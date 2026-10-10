@@ -1061,19 +1061,21 @@
 
     .paro-au-cover-frame {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border: 2px solid #FCE1E4;
-      border-radius: 14px;
-      background: #FFFDF9;
-      box-shadow: 0 4px 12px rgba(226, 149, 152, 0.12);
+      overflow: visible;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .paro-au-cover-img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .paro-au-title {
@@ -1090,9 +1092,16 @@
       width: 100%;
       max-height: 42vh;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
       margin: 0 auto 14px;
-      background: #FFFDF9;
+      background: transparent;
+    }
+
+    /* 僅 Paro/AU 詳細設定彈窗使用新細明體 */
+    .paro-au-detail-content {
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
     }
 
     .paro-au-detail-text {
@@ -1102,6 +1111,14 @@
       text-align: left;
       white-space: pre-line;
       padding: 0 4px 6px;
+      font-family: inherit;
+    }
+
+    .paro-au-detail-tagline {
+      color: #D87074;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
     }
 
     @media (max-width: 380px) {
@@ -2030,6 +2047,7 @@
             <div class="menu-sub-links">
               <a onclick="switchPage('dream-painting')" class="menu-sub-btn">Gallery</a>
               <a onclick="switchPage('dream-article')" class="menu-sub-btn">Article</a>
+              <a onclick="switchPage('dream-paro-au')" class="menu-sub-btn">Paro/AU</a>
               <a onclick="switchPage('dream-song')" class="menu-sub-btn">Song</a>
               <a onclick="switchPage('dream-memo')" class="menu-sub-btn">Memo</a>
             </div>
@@ -2301,7 +2319,7 @@
         </div>
 
         <!-- 2. Article 分隔線 -->
-        <div class="custom-section-divider" id="dream-article">
+        <div class="custom-section-divider align-right" id="dream-article">
           <img src="IMG_3843.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Article</span>
           <div class="custom-divider-line"></div>
@@ -2336,11 +2354,16 @@
         </div>
 
 <!-- 3. Paro/AU 分隔線 -->
-        <div class="custom-section-divider align-right" id="dream-paro-au">
+        <div class="custom-section-divider" id="dream-paro-au">
           <div class="custom-divider-line"></div>
           <img src="1X8GMZW3kQQFkp4ddFVzCH.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Paro/AU</span>
         </div>
+
+        <p style="margin: 10px 0; line-height: 1.7; font-size: 0.95rem; color: #5C4A4A;">
+          設定上會有點瑪麗蘇，<br>
+          單純為自爽服務。
+        </p>
 
         <!-- Paro/AU 展示區塊 -->
         <div class="paro-au-container">
@@ -2591,6 +2614,7 @@
         <div class="menu-sub-links">
           <a onclick="switchPage('dream-painting'); closeMenu();" class="menu-sub-btn">Gallery</a>
           <a onclick="switchPage('dream-article'); closeMenu();" class="menu-sub-btn">Article</a>
+          <a onclick="switchPage('dream-paro-au'); closeMenu();" class="menu-sub-btn">Paro/AU</a>
           <a onclick="switchPage('dream-song'); closeMenu();" class="menu-sub-btn">Song</a>
           <a onclick="switchPage('dream-memo'); closeMenu();" class="menu-sub-btn">Memo</a>
         </div>
@@ -3305,10 +3329,30 @@
     }
 
     const paroAuData = {
-      highSchool: { title: "高中校園", image: "IMG_6243.gif", description: "詳細設定待補充。" },
-      tianxiangji: { title: "添香記", image: "IMG_6250.gif", description: "詳細設定待補充。" },
-      childhoodFriends: { title: "青梅竹馬", image: "IMG_6252.gif", description: "詳細設定待補充。" },
-      onlyCultist: { title: "邪神唯一信徒", image: "IMG_6253.gif", description: "詳細設定待補充。" }
+      highSchool: {
+        title: "高中校園",
+        image: "IMG_8575.jpeg",
+        tagline: "古董店老闆學長X弄碎玉佩學妹",
+        description: "總而言之是歡喜冤家。\n主線——初遇。"
+      },
+      tianxiangji: {
+        title: "添香記",
+        image: "1790163201174.png",
+        tagline: "四海遊歷說書人X酒肆掌櫃之女",
+        description: "總而言之是歡喜冤家。\n施工中"
+      },
+      childhoodFriends: {
+        title: "青梅竹馬",
+        image: "IMG_5226.jpeg",
+        tagline: "心（不）甘情（不）願保鑣X驕縱任性大小姐",
+        description: "總而言之是歡喜冤家。\n施工中"
+      },
+      onlyCultist: {
+        title: "邪神唯一信徒",
+        image: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg",
+        tagline: "遊戲人間的邪神X自甘墮落的唯一信徒",
+        description: "總而言之是歡喜冤家。\n施工中"
+      }
     };
 
     function openParoAuModal(paroAuKey) {
@@ -3322,7 +3366,10 @@
       gridEl.className = 'paro-au-detail-content';
       gridEl.innerHTML = `
         <img src="${item.image}" alt="${item.title}" class="paro-au-detail-image">
-        <div class="paro-au-detail-text">${item.description}</div>
+        <div class="paro-au-detail-text">
+          <div class="paro-au-detail-tagline">${item.tagline}</div>
+          <div>${item.description}</div>
+        </div>
       `;
 
       document.getElementById('albumModalOverlay').classList.add('active');

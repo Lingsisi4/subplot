@@ -1039,6 +1039,76 @@
       width: 120px;
     }
 
+    /* ===== Dream：Paro/AU 卡片展示 ===== */
+    .paro-au-container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 16px;
+      margin: 18px auto 24px;
+      max-width: 420px;
+    }
+
+    .paro-au-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .paro-au-card:hover { transform: translateY(-4px); }
+
+    .paro-au-cover-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border: 2px solid #FCE1E4;
+      border-radius: 14px;
+      background: #FFFDF9;
+      box-shadow: 0 4px 12px rgba(226, 149, 152, 0.12);
+    }
+
+    .paro-au-cover-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .paro-au-title {
+      margin-top: 8px;
+      color: #D87074;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .paro-au-detail-image {
+      display: block;
+      width: 100%;
+      max-height: 42vh;
+      object-fit: contain;
+      border-radius: 12px;
+      margin: 0 auto 14px;
+      background: #FFFDF9;
+    }
+
+    .paro-au-detail-text {
+      color: #5C4A4A;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      text-align: left;
+      white-space: pre-line;
+      padding: 0 4px 6px;
+    }
+
+    @media (max-width: 380px) {
+      .paro-au-container { gap: 14px 10px; }
+      .paro-au-title { font-size: 0.86rem; }
+    }
+
     .album-card:hover {
       transform: translateY(-4px);
     }
@@ -1958,7 +2028,7 @@
               <span>Dream</span>
             </a>
             <div class="menu-sub-links">
-              <a onclick="switchPage('dream-painting')" class="menu-sub-btn">Painting</a>
+              <a onclick="switchPage('dream-painting')" class="menu-sub-btn">Gallery</a>
               <a onclick="switchPage('dream-article')" class="menu-sub-btn">Article</a>
               <a onclick="switchPage('dream-song')" class="menu-sub-btn">Song</a>
               <a onclick="switchPage('dream-memo')" class="menu-sub-btn">Memo</a>
@@ -2211,7 +2281,7 @@
         <!-- 1. Painting 分隔線 -->
         <div class="custom-section-divider" id="dream-painting">
           <img src="IMG_3842.gif" alt="icon" class="custom-divider-gif">
-          <span class="custom-divider-text">Painting</span>
+          <span class="custom-divider-text">Gallery</span>
           <div class="custom-divider-line"></div>
         </div>
         <p style="margin: 10px 0; line-height: 1.8;">
@@ -2231,10 +2301,10 @@
         </div>
 
         <!-- 2. Article 分隔線 -->
-        <div class="custom-section-divider align-right" id="dream-article">
-          <div class="custom-divider-line"></div>
+        <div class="custom-section-divider" id="dream-article">
           <img src="IMG_3843.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Article</span>
+          <div class="custom-divider-line"></div>
         </div>
         <p style="margin: 10px 0; line-height: 1.7;">
           包含個人創作和私人文字委託。<br>
@@ -2265,11 +2335,38 @@
           </div>
         </div>
 
-<!-- 3. Song 分隔線 -->
-        <div class="custom-section-divider" id="dream-song">
+<!-- 3. Paro/AU 分隔線 -->
+        <div class="custom-section-divider align-right" id="dream-paro-au">
+          <div class="custom-divider-line"></div>
+          <img src="1X8GMZW3kQQFkp4ddFVzCH.gif" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Paro/AU</span>
+        </div>
+
+        <!-- Paro/AU 展示區塊 -->
+        <div class="paro-au-container">
+          <div class="paro-au-card" onclick="openParoAuModal('highSchool')">
+            <div class="paro-au-cover-frame"><img src="IMG_6243.gif" alt="高中校園" class="paro-au-cover-img"></div>
+            <div class="paro-au-title">高中校園</div>
+          </div>
+          <div class="paro-au-card" onclick="openParoAuModal('tianxiangji')">
+            <div class="paro-au-cover-frame"><img src="IMG_6250.gif" alt="添香記" class="paro-au-cover-img"></div>
+            <div class="paro-au-title">添香記</div>
+          </div>
+          <div class="paro-au-card" onclick="openParoAuModal('childhoodFriends')">
+            <div class="paro-au-cover-frame"><img src="IMG_6252.gif" alt="青梅竹馬" class="paro-au-cover-img"></div>
+            <div class="paro-au-title">青梅竹馬</div>
+          </div>
+          <div class="paro-au-card" onclick="openParoAuModal('onlyCultist')">
+            <div class="paro-au-cover-frame"><img src="IMG_6253.gif" alt="邪神唯一信徒" class="paro-au-cover-img"></div>
+            <div class="paro-au-title">邪神唯一信徒</div>
+          </div>
+        </div>
+
+        <!-- 4. Song 分隔線 -->
+        <div class="custom-section-divider align-right" id="dream-song">
+          <div class="custom-divider-line"></div>
           <img src="IMG_3844.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Song</span>
-          <div class="custom-divider-line"></div>
         </div>
 
         <div style="text-align: center; padding: 0 10px 10px 10px;">
@@ -2316,10 +2413,10 @@
         </div>
 
 <!-- 4. Memo 分隔線 -->
-        <div class="custom-section-divider align-right" id="dream-memo">
-          <div class="custom-divider-line"></div>
+        <div class="custom-section-divider" id="dream-memo">
           <img src="ZsGPHo5.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Memo</span>
+          <div class="custom-divider-line"></div>
         </div>
         <p style="margin: 10px 0; line-height: 1.7;">
           什麼都有的碎碎念和雜記。<br>
@@ -2492,7 +2589,7 @@
           <span>Dream</span>
         </a>
         <div class="menu-sub-links">
-          <a onclick="switchPage('dream-painting'); closeMenu();" class="menu-sub-btn">Painting</a>
+          <a onclick="switchPage('dream-painting'); closeMenu();" class="menu-sub-btn">Gallery</a>
           <a onclick="switchPage('dream-article'); closeMenu();" class="menu-sub-btn">Article</a>
           <a onclick="switchPage('dream-song'); closeMenu();" class="menu-sub-btn">Song</a>
           <a onclick="switchPage('dream-memo'); closeMenu();" class="menu-sub-btn">Memo</a>
@@ -3202,6 +3299,31 @@
           </div>
         `;
       }
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const paroAuData = {
+      highSchool: { title: "高中校園", image: "IMG_6243.gif", description: "詳細設定待補充。" },
+      tianxiangji: { title: "添香記", image: "IMG_6250.gif", description: "詳細設定待補充。" },
+      childhoodFriends: { title: "青梅竹馬", image: "IMG_6252.gif", description: "詳細設定待補充。" },
+      onlyCultist: { title: "邪神唯一信徒", image: "IMG_6253.gif", description: "詳細設定待補充。" }
+    };
+
+    function openParoAuModal(paroAuKey) {
+      const item = paroAuData[paroAuKey];
+      if (!item) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<span style="color: #D87074;">${item.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'paro-au-detail-content';
+      gridEl.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" class="paro-au-detail-image">
+        <div class="paro-au-detail-text">${item.description}</div>
+      `;
 
       document.getElementById('albumModalOverlay').classList.add('active');
       document.getElementById('albumModalCard').classList.add('active');
